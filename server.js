@@ -5,6 +5,10 @@ const port = 8080
 
 app.use(cors())
 
-app.get('/', (req, res) => res.send('Hello World!'))
+app.get('/', (req, res) => res.sendFile('sensors.html'))
+
+app.post('info', (req, res) => {
+    console.log(req.body)
+})
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
