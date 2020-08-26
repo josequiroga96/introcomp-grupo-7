@@ -1,9 +1,24 @@
-let motionProps, orientationProps
+// http://192.168.200.39:8080/api/info
 
-window.addEventListener("devicemotion", handleMotion)
-function handleMotion(event) {
+const url = "http://localhost:8080/api/info"
+
+async function postData(url = "", data = {}) {
+  fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+
+  // .then(() => console.log("Send Data"))
+  // return response.json()
+}
+
+postData(url, { message: "init" })
+
+window.addEventListener("devicemotion", (event) => {
   const output = document.getElementById("motion-output")
-  // console.log(event)
 
   let properties = ""
   for (let prop in event) {
@@ -28,8 +43,8 @@ function handleMotion(event) {
   }
   output.innerHTML = properties
 
-  motionProps = event
-}
+  postData(url, { data: properties })
+})
 
 window.addEventListener("deviceorientation", handleOrientation)
 function handleOrientation(event) {
@@ -40,13 +55,4 @@ function handleOrientation(event) {
     properties += prop + ": " + event[prop] + "<br>"
   }
   output.innerHTML = properties
-
-  orientationProps = event
 }
-
-setInterval(() => {
-  fetch("api/info", {
-    method: "post",
-    body: JSON.stringify({ orientationProps, motionProps }),
-  })
-}, 30000)
