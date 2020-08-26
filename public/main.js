@@ -21,35 +21,48 @@ window.addEventListener("devicemotion", (event) => {
   const output = document.getElementById("motion-output")
 
   let properties = ""
+  let data = {}
   for (let prop in event) {
     if (prop === "acceleration") {
-      properties += prop + " x: " + event.acceleration.x + "<br>"
-      properties += prop + " y: " + event.acceleration.y + "<br>"
-      properties += prop + " z: " + event.acceleration.z + "<br>"
+        data[prop] = {
+            x: event[prop].x,
+            y: event[prop].y,
+            z: event[prop].z
+        }
+        properties += prop + " x: " + event.acceleration.x + "<br>"
+        properties += prop + " y: " + event.acceleration.y + "<br>"
+        properties += prop + " z: " + event.acceleration.z + "<br>"
     } else if (prop === "accelerationIncludingGravity") {
-      properties +=
-        prop + " x: " + event.accelerationIncludingGravity.x + "<br>"
-      properties +=
-        prop + " y: " + event.accelerationIncludingGravity.y + "<br>"
-      properties +=
-        prop + " z: " + event.accelerationIncludingGravity.z + "<br>"
+        data[prop] = {
+            x: event[prop].x,
+            y: event[prop].y,
+            z: event[prop].z
+        }
+        properties += prop + " x: " + event.accelerationIncludingGravity.x + "<br>"
+        properties += prop + " y: " + event.accelerationIncludingGravity.y + "<br>"
+        properties += prop + " z: " + event.accelerationIncludingGravity.z + "<br>"
     } else if (prop === "rotationRate") {
-      properties += prop + " alpha: " + event.rotationRate.alpha + "<br>"
-      properties += prop + " beta: " + event.rotationRate.beta + "<br>"
-      properties += prop + " gamma: " + event.rotationRate.gamma + "<br>"
+        data[prop] = {
+            alpha: event[prop].alpha,
+            beta: event[prop].beta,
+            gamma: event[prop].gamma
+        }
+        properties += prop + " alpha: " + event.rotationRate.alpha + "<br>"
+        properties += prop + " beta: " + event.rotationRate.beta + "<br>"
+        properties += prop + " gamma: " + event.rotationRate.gamma + "<br>"
     } else {
-      properties += prop + ": " + event[prop] + "<br>"
+        // data[prop] = event[prop]
+        properties += prop + ": " + event[prop] + "<br>"
     }
   }
   output.innerHTML = properties
 
-  postData(url, { data: properties })
+  postData(url, { data: data })
 })
 
 window.addEventListener("deviceorientation", handleOrientation)
 function handleOrientation(event) {
   const output = document.getElementById("orientation-output")
-  //   console.log(event)
   let properties = ""
   for (let prop in event) {
     properties += prop + ": " + event[prop] + "<br>"
