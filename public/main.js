@@ -1,4 +1,18 @@
+// http://192.168.200.39:8080/info
+async function postData(url = '', data = {}) {
+
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }).then(() => console.log("Send Data"));
+    return response.json();
+}
+
 window.addEventListener("devicemotion", handleMotion)
+postData("http://192.168.200.39:8080/info", {message: "init"})
 function handleMotion(event) {
   const output = document.getElementById("motion-output")
   // console.log(event)
@@ -24,6 +38,7 @@ function handleMotion(event) {
       properties += prop + ": " + event[prop] + "<br>"
     }
   }
+  postData("http://192.168.200.39:8080/info", {data: properties})
   output.innerHTML = properties
 }
 
