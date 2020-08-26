@@ -6,11 +6,15 @@ const port = 8080
 
 app.use(cors())
 
-app.use(express.static(__dirname + "/public"))
+const api = express.Router()
 
-app.post("api/info", (req, res) => {
+api.post("/info", (req, res) => {
   console.log(req.body)
 })
+
+app.use(express.static(__dirname + "/public"))
+
+app.use("/api", api)
 
 app.listen(port, () =>
   console.log(`Example app listening at http://localhost:${port}`)

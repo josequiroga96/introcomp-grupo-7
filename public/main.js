@@ -1,3 +1,5 @@
+let motionProps, orientationProps
+
 window.addEventListener("devicemotion", handleMotion)
 function handleMotion(event) {
   const output = document.getElementById("motion-output")
@@ -25,6 +27,8 @@ function handleMotion(event) {
     }
   }
   output.innerHTML = properties
+
+  motionProps = event
 }
 
 window.addEventListener("deviceorientation", handleOrientation)
@@ -36,4 +40,13 @@ function handleOrientation(event) {
     properties += prop + ": " + event[prop] + "<br>"
   }
   output.innerHTML = properties
+
+  orientationProps = event
 }
+
+setInterval(() => {
+  fetch("api/info", {
+    method: "post",
+    body: JSON.stringify({ orientationProps, motionProps }),
+  })
+}, 30000)
