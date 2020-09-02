@@ -10,15 +10,26 @@ app.use(bodyParser.json())
 
 const api = express.Router()
 
+let data;
+
 api.post("/info", (req, res) => {
-  console.log(req.body)
-  res.status(200).send("Success!")
+    data = req.body
+    res.status(200).send("Success!")
 })
 
-app.use(express.static(__dirname + "/public"))
+app.use(express.static(__dirname + "/public/phone"))
 
 app.use("/api", api)
 
+app.get('/web', (req, res) => {
+    let path = __dirname + '/public/web/index.html'
+    res.status(200).sendFile(path)
+})
+
+api.get("/data", (req, res) => {
+    res.status(200).send({data})
+})
+
 app.listen(port, () =>
-  console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`Example app listening at http://localhost:${port}`)
 )

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>INFO Sensors</title>
+  </head>
+  <script>
+    const url = "http://localhost:8080/api/data"
+
+    async function getData(url = "") {
+      fetch(url, {
+        method: "GET",
+      })
+              .then((res) => {
+                return res.json();
+              })
+              .then((res) => console.log("Res: ", res))
+
+      // return response.json()
+    }
+
+    getData(url)
+
+    console.log("Here in get data")
+
+    function showData() {
+      const output = document.getElementById("motion-output")
+      let properties = "Hello world" + "<br>"
+      output.innerHTML = properties
+    }
+    showData()
+  </script>
+  <script>
+    function showData() {
+      const output = document.getElementById("orientation-output")
+      let properties = "Hello world" + "<br>"
+      output.innerHTML = properties
+    }
+    showData()
+  </script>
+  <body>
+    <h1>Info Sensors</h1>
+    <h2>MOTION OUTPUT</h2>
+    <div id="motion-output"></div>
+    <h2>ORIENTATION OUTPUT</h2>
+    <div id="orientation-output"></div>
+  </body>
+</html>
