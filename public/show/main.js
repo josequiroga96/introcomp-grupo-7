@@ -14,6 +14,7 @@ let rotGamma = []
 setInterval(async () => {
     const response = await fetch('/api/info')
     const json = await response.json()
+    console.log(json)
 
     accX.push(
         {
@@ -22,21 +23,21 @@ setInterval(async () => {
 
     )
 
-    acc.y.push(
+    accY.push(
         {
             y: json.acceleration.y
         }
     )
 
-    acc.z.push(
+    accZ.push(
         {
             y: json.acceleration.z
         }
     )
 
-    accWGX.push({ y: json.accelerationWithGravity.x })
-    accWGY.push({ y: json.accelerationWithGravity.y })
-    accWGZ.push({ y: json.accelerationWithGravity.z })
+    accWGX.push({ y: json.accelerationIncludingGravity?.x })
+    accWGY.push({ y: json.accelerationIncludingGravity?.y })
+    accWGZ.push({ y: json.accelerationIncludingGravity?.z })
 
     rotAlpha.push({ y: json.rotationRate.alpha })
     rotBeta.push({ y: json.rotationRate.beta })
@@ -45,8 +46,14 @@ setInterval(async () => {
 
 }, 3001)
 
+window.onload = () => {
+    setInterval(() => {
+        draw()
+    }, 3002)
+}
 
-window.onload = function () {
+function draw() {
+
 
     var chart = new CanvasJS.Chart("chartContainer", {
         animationEnabled: true,
