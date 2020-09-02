@@ -64,46 +64,55 @@ function draw() {
         data: [
             {
                 type: "line",
+                name: 'Acceleration x',
                 indexLabelFontSize: 16,
                 dataPoints: accX
             },
             {
                 type: "line",
+                name: 'Acceleration y',
                 indexLabelFontSize: 16,
                 dataPoints: accY
             },
             {
                 type: "line",
+                name: 'Acceleration z',
                 indexLabelFontSize: 16,
                 dataPoints: accZ
             },
             {
                 type: "line",
+                name: 'Acceleration including gravity x',
                 indexLabelFontSize: 16,
                 dataPoints: accWGX
             },
             {
                 type: "line",
+                name: 'Acceleration including gravity y',
                 indexLabelFontSize: 16,
                 dataPoints: accWGY
             },
             {
                 type: "line",
+                name: 'Acceleration including gravity z',
                 indexLabelFontSize: 16,
                 dataPoints: accWGZ
             },
             {
                 type: "line",
+                name: 'Rotation alpha',
                 indexLabelFontSize: 16,
                 dataPoints: rotAlpha
             },
             {
                 type: "line",
+                name: 'Rotation beta',
                 indexLabelFontSize: 16,
                 dataPoints: rotBeta
             },
             {
                 type: "line",
+                name: 'Rotation gamma',
                 indexLabelFontSize: 16,
                 dataPoints: rotGamma
             },
