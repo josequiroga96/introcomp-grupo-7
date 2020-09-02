@@ -38,9 +38,9 @@ setInterval(async () => {
     accWGY.push({ y: json.accelerationWithGravity.y })
     accWGZ.push({ y: json.accelerationWithGravity.z })
 
-    rotAlpha.push(json.rotationRate.alpha)
-    rotBeta.push(json.rotationRate.beta)
-    rotGamma.push(json.rotationRate.gamma)
+    rotAlpha.push({ y: json.rotationRate.alpha })
+    rotBeta.push({ y: json.rotationRate.beta })
+    rotGamma.push({ y: json.rotationRate.gamma })
 
 
 }, 3001)
