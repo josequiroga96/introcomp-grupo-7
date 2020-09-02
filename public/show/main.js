@@ -3,6 +3,11 @@ let acc = {
     y: [],
     z: []
 }
+let accX = [
+    {
+        y: jsndj
+    }
+]
 let accWG = {
     x: [],
     y: [],
@@ -19,7 +24,12 @@ setInterval(async () => {
     const response = await fetch('/api/info')
     const json = await response.json()
 
-    acc.x.push(json.acceleration.x)
+    accX.push(
+        {
+            y: json.acceleration.x
+        }
+
+    )
     acc.y.push(json.acceleration.y)
     acc.z.push(json.acceleration.z)
 
