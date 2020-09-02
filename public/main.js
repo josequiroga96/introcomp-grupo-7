@@ -1,8 +1,8 @@
 // http://192.168.200.39:8080/api/info
 
-const url = "http://192.168.1.100:8080/api/info"
 
-async function postData(url = "", data = {}) {
+async function postData(data = {}) {
+  const url = "http://192.168.1.100:8080/api/info"
   fetch(url, {
     method: "POST",
     headers: {
@@ -12,9 +12,13 @@ async function postData(url = "", data = {}) {
   })
 }
 
-postData(url, { message: "init" })
+
+postData({ message: "init" })
+
 
 const output = document.getElementById("motion-output")
+
+let data = { message: 'empty' };
 
 window.addEventListener('devicemotion', onDeviceMotion)
 
@@ -38,7 +42,7 @@ function onDeviceMotion(event) {
     }
   } = event
 
-  const data = {
+  data = {
     acceleration: {
       x: accX,
       y: accY,
@@ -60,7 +64,10 @@ function onDeviceMotion(event) {
 
   output.innerHTML = JSON.stringify(data)
 
-  postData(url, data)
 }
+
+setInterval(() => {
+  postData(data)
+}, 3000)
 
 
