@@ -1,18 +1,24 @@
 const express = require("express")
-const cors = require("cors")
-const bodyParser = require("body-parser")
+// const cors = require("cors")
 
 const app = express()
 const port = 8080
 
-app.use(cors())
+// app.use(cors())
 app.use(express.json())
 
 const api = express.Router()
 
+let data
+
 api.post("/info", (req, res) => {
-  console.log(req.body)
+  data = req.body
+  console.log(data)
   res.status(200).send("Success!")
+})
+
+api.get('/info', (req, res) => {
+  res.status(200).send(data)
 })
 
 app.use(express.static(__dirname + "/public"))
