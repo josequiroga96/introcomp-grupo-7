@@ -9,7 +9,9 @@ app.use(express.json())
 
 const api = express.Router()
 
-let data
+let data = {
+  message: 'init data'
+}
 
 api.post("/info", (req, res) => {
   data = req.body
