@@ -18,7 +18,9 @@ api.post("/info", (req, res) => {
 })
 
 api.get('/info', (req, res) => {
-  res.status(200).setHeader('Content-Type', 'application/json').send(data)
+  res.status(200)
+  res.setHeader('Content-Type', 'application/json')
+  res.send(data)
 })
 
 app.use(express.static(__dirname + "/public"))
