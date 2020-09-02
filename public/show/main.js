@@ -7,9 +7,9 @@ let accWGX = []
 let accWGY = []
 let accWGZ = []
 
-let rotX = []
-let rotY = []
-let rotZ = []
+let rotAlpha = []
+let rotBeta = []
+let rotGama = []
 
 setInterval(async () => {
     const response = await fetch('/api/info')
@@ -24,13 +24,13 @@ setInterval(async () => {
     acc.y.push(json.acceleration.y)
     acc.z.push(json.acceleration.z)
 
-    accWG.x.push(json.accelerationWithGravity.x)
-    accWG.y.push(json.accelerationWithGravity.y)
-    accWG.z.push(json.accelerationWithGravity.z)
+    accWGX.push({ y: json.accelerationWithGravity.x })
+    accWGY.push({ y: json.accelerationWithGravity.y })
+    accWGZ.push({ y: json.accelerationWithGravity.z })
 
-    rot.alpha.push(json.rotationRate.alpha)
-    rot.beta.push(json.rotationRate.beta)
-    rot.gamma.push(json.rotationRate.gamma)
+    rotAlpha.push(json.rotationRate.alpha)
+    rotBeta.push(json.rotationRate.beta)
+    rotGamma.push(json.rotationRate.gamma)
 
 
 }, 3001)
